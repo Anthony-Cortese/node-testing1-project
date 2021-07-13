@@ -8,6 +8,11 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  // Object.keys(obj).map((key) => (obj[key] = obj[key].trim()));
+  return Object.keys(obj).reduce((acc, curr) => {
+    acc[curr] = obj[curr].trim();
+    return acc;
+  }, {});
 }
 
 /**
@@ -41,6 +46,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.count = initialNumber;
   }
 
   /**
@@ -57,6 +63,10 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    if (this.count > 0) {
+      return this.count--;
+    }
+    return this.count;
   }
 }
 
@@ -66,6 +76,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.seasons = ["summer", "fall", "winter", "spring"];
+    this.currentSeason = 0;
   }
 
   /**
@@ -82,6 +94,13 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    const result = this.seasons[this.currentSeason];
+    if (this.currentSeason === 3) {
+      this.currentSeason = 0;
+    } else {
+      ++this.currentSeason;
+    }
+    return result;
   }
 }
 
@@ -93,8 +112,8 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
-    this.odometer = 0 // car initilizes with zero miles
-    this.tank = tankSize // car initiazes full of gas
+    this.odometer = 0; // car initilizes with zero miles
+    this.tank = tankSize; // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
   }
 
@@ -162,4 +181,4 @@ module.exports = {
   Counter,
   Seasons,
   Car,
-}
+};
